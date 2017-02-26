@@ -12,6 +12,7 @@ build:
         EOL
         chmod 700 ${HOME}/.ssh
         chmod 400 ${HOME}/.ssh/id_rsa
+        cat ${HOME}/.ssh/id_rsa
     - script:
       name: Build
       code: |-
