@@ -4,18 +4,36 @@ build:
     cmd: /bin/bash
   steps:
     - script:
-      name: Add ssh key
+      name: create .ssh directory
       code: |-
         mkdir ${HOME}/.ssh
-        echo ${SSH_KEY_PRIVATE} > ${HOME}/.ssh/id_rsa
+
+    - create-file:
+      name: put private key
+      filename: ${HOME}/.ssh/id_rsa
+      overwrite: true
+      hide-from-log: true
+      content: ${SSH_PRIVATE_KEY}
+
+    - create-file:
+      name: put public key
+      filename: ${HOME}/.ssh/id_rsa.pub
+      overwrite: true
+      hide-from-log: true
+      content: ${SSH_PUBLIC_KEY}
+
+    - script:
+      name: Modify Permission
+      code: |-
         chmod 700 ${HOME}/.ssh
         chmod 400 ${HOME}/.ssh/id_rsa
-        cat ${HOME}/.ssh/id_rsa
+
     - script:
       name: Build
       code: |-
         vagrant up
         ./fetch_rpm.sh
+
   after-steps:
     - script:
       name: Destroy VM
