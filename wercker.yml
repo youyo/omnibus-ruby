@@ -21,7 +21,8 @@ build:
     - script:
       name: Build
       code: |-
-        ls -ahl .ssh/
+        ls -ahl
+        ls -ahl /root/.ssh
         vagrant up
         ./fetch_rpm.sh
   after-steps:
