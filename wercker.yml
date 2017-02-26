@@ -34,6 +34,7 @@ build:
       name: Build
       code: |-
         vagrant up
+        yum install openssh-clients -y
         ./fetch_rpm.sh
 
   after-steps:
