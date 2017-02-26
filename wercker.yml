@@ -7,9 +7,7 @@ build:
       name: Add ssh key
       code: |-
         mkdir ${HOME}/.ssh
-        cat <<EOL> ${HOME}/.ssh/id_rsa
-        ${SSH_KEY_PRIVATE}
-        EOL
+        echo ${SSH_KEY_PRIVATE} > ${HOME}/.ssh/id_rsa
         chmod 700 ${HOME}/.ssh
         chmod 400 ${HOME}/.ssh/id_rsa
         cat ${HOME}/.ssh/id_rsa
