@@ -1,0 +1,46 @@
+proxy:
+  box:
+    id: alpine:latest
+    cmd: /bin/sh
+  steps:
+    - script:
+      name: Build
+      code: |-
+        echo 'proxy'
+  after-steps:
+    - slack-notifier:
+      url: ${SLACK_URL}
+
+build:
+  box:
+    id: youyo/vagrant:1.9.1
+    cmd: /bin/bash
+  steps:
+    - add-ssh-key:
+      keyname: SSH_KEY
+    - script:
+      name: Build
+      code: |-
+        vagrant up
+        ./fetch_rpm.sh
+  after-steps:
+    - script:
+      name: Destroy VM
+      code: |-
+        vagrant destroy -f
+    - slack-notifier:
+      url: ${SLACK_URL}
+
+publish:
+  box:
+    id: ruby:2.4-alpine
+    cmd: /bin/sh
+  steps:
+    - script:
+      name: Publish
+      code: |-
+        gem install package_cloud
+        package_cloud push youyo/omnibus-ruby/${OS_RELEASE} pkg/*.rpm
+  after-steps:
+    - slack-notifier:
+      url: ${SLACK_URL}

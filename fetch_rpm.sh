@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -ux
 
-vagrant ssh-config > ssh-config.txt
+vagrant ssh-config --host omnibus-ruby > ssh-config.txt
 scp -F ssh-config.txt omnibus-ruby:/omnibus-ruby/pkg/\*.rpm pkg/

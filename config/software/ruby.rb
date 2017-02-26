@@ -33,7 +33,8 @@ build do
                        "--without-tk",
                        "--disable-dtrace",
                        "--with-bundled-md5",
-                       "--with-opt-dir=#{install_dir}/embedded"
+                       "--with-opt-dir=#{install_dir}/embedded",
+                       "--bindir=#{install_dir}/bin"
   ]
 
   configure(*configure_command, env: env)

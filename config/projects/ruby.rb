@@ -10,8 +10,8 @@ build_version Omnibus::BuildVersion.semver
 build_iteration 1
 
 dependency "preparation"
-dependency "rake"
 dependency "ruby"
+dependency "rake"
 dependency "version-manifest"
 
 exclude "**/.git"
