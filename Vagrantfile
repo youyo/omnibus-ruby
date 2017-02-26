@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define "omnibus-ruby-#{ENV['DEGITALOCEAN_IMAGE']}" do |c|
+  config.vm.define "omnibus-ruby-#{ENV['DEGITALOCEAN_IMAGE']}_#{Time.now.to_i}" do |c|
     c.vm.provider :digital_ocean do |provider, override|
       provider.ssh_key_name = ENV['DEGITALOCEAN_SSHKEY']
       override.ssh.private_key_path = ENV['VAGRANT_PRIVATE_KEY_PATH']
