@@ -23,6 +23,7 @@ build:
       code: |-
         ls -ahl
         ls -ahl /root/.ssh
+        cat /root/.ssh/config
         vagrant up
         ./fetch_rpm.sh
   after-steps:
