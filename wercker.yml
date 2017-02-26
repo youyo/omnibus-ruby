@@ -1,23 +1,17 @@
-proxy:
-  box:
-    id: alpine:latest
-    cmd: /bin/sh
-  steps:
-    - script:
-      name: Build
-      code: |-
-        echo 'proxy'
-  after-steps:
-    - slack-notifier:
-      url: ${SLACK_URL}
-
 build:
   box:
     id: youyo/vagrant:1.9.1
     cmd: /bin/bash
   steps:
-    - add-ssh-key:
-      keyname: SSH_KEY
+    - script:
+      name: Add ssh key
+      code: |-
+        mkdir ${HOME}/.ssh
+        cat <<EOL> ${HOME}/.ssh/id_rsa
+        ${SSH_KEY_PRIVATE}
+        EOL
+        chmod 700 ${HOME}/.ssh
+        chmod 400 ${HOME}/.ssh/id_rsa
     - script:
       name: Build
       code: |-
