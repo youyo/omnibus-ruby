@@ -5,7 +5,6 @@ Vagrant.configure("2") do |config|
   config.vm.define "omnibus-ruby-#{ENV['DEGITALOCEAN_IMAGE']}" do |c|
     c.vm.provider :digital_ocean do |provider, override|
       provider.ssh_key_name = ENV['DEGITALOCEAN_SSHKEY']
-      override.ssh.private_key_path = ENV['VAGRANT_PRIVATE_KEY_PATH']
       override.vm.box = 'digital_ocean'
       override.vm.box_url = "https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box"
       provider.token = ENV['DEGITALOCEAN_TOKEN']
