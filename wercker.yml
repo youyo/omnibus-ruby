@@ -33,15 +33,17 @@ build:
     - script:
       name: Build
       code: |-
-        vagrant up
         yum install openssh-clients -y
-        ./fetch_rpm.sh
+        vagrant up
+        vagrant ssh-config --host omnibus-ruby | tee ssh-config.txt
+        scp -F ssh-config.txt omnibus-ruby:/omnibus-ruby/pkg/\*.rpm pkg/
 
   after-steps:
     - script:
       name: Destroy VM
       code: |-
         vagrant destroy -f
+
     - slack-notifier:
       url: ${SLACK_URL}
 
