@@ -33,7 +33,7 @@ build:
     - script:
       name: Build
       code: |-
-        yum install openssh-clients -y
+        yum install openssh-clients rsync -y
         vagrant up
         vagrant ssh-config --host omnibus | tee ssh-config.txt
         scp -F ssh-config.txt omnibus:/vagrant/pkg/*.rpm .
