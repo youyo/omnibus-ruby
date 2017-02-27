@@ -36,7 +36,7 @@ build:
         yum install openssh-clients -y
         vagrant up
         vagrant ssh-config --host omnibus-ruby | tee ssh-config.txt
-        scp -F ssh-config.txt omnibus-ruby:/omnibus-ruby/pkg/\*.rpm pkg/
+        scp -F ssh-config.txt omnibus-ruby:/omnibus-ruby/pkg/*.rpm .
 
   after-steps:
     - script:
@@ -56,7 +56,7 @@ publish:
       name: Publish
       code: |-
         gem install package_cloud
-        package_cloud push youyo/omnibus-ruby/${OS_RELEASE} pkg/*.rpm
+        package_cloud push youyo/omnibus-ruby/${OS_RELEASE} *.rpm
   after-steps:
     - slack-notifier:
       url: ${SLACK_URL}
