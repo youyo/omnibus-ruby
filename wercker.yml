@@ -56,7 +56,7 @@ publish:
       name: Publish
       code: |-
         gem install package_cloud
-        package_cloud push youyo/omnibus-ruby/${OS_RELEASE} *.rpm
+        package_cloud push youyo/omnibus-packages/${OS_RELEASE} *.rpm
   after-steps:
     - slack-notifier:
       url: ${SLACK_URL}
