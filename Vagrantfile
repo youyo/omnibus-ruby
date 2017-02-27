@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
       override.ssh.private_key_path = ENV['VAGRANT_PRIVATE_KEY_PATH']
       override.vm.box = 'digital_ocean'
       override.vm.box_url = "https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box"
-      override.vm.synced_folder ".", "/vagrant", disabled: true
+      override.vm.synced_folder ".", "/vagrant", type: "rsync"
       provider.token = ENV['DEGITALOCEAN_TOKEN']
       provider.image = ENV['DEGITALOCEAN_IMAGE']
       provider.region = 'sgp1'
@@ -34,11 +34,7 @@ Vagrant.configure("2") do |config|
     echo 'export PATH=/usr/local/ruby-2.4.0/bin:$PATH' > /etc/profile.d/ruby-2.4.0.sh
     source /etc/profile.d/ruby-2.4.0.sh
     gem install bundler
-    cd /
-    git clone https://github.com/youyo/omnibus-ruby.git
-    cd omnibus-ruby
-    t=`git describe --tags --abbrev=0`
-    git checkout refs/tags/${t}
+    cd /vagrant
     bundle install --binstubs
     ./bin/omnibus build ruby
   SHELL

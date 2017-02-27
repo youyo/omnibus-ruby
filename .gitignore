@@ -11,3 +11,4 @@ vendor/cookbooks
 ssh-config.txt
 .envrc
 __*
+*.rpm
