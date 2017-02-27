@@ -1,6 +1,6 @@
 #
 
-name "ruby"
+name "omnibus-ruby"
 maintainer "youyo"
 homepage "https://github.com/youyo/omnibus-ruby"
 
