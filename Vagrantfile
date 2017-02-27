@@ -37,6 +37,8 @@ Vagrant.configure("2") do |config|
     cd /
     git clone https://github.com/youyo/omnibus-ruby.git
     cd omnibus-ruby
+    t=`git describe --tags --abbrev=0`
+    git checkout refs/tags/${t}
     bundle install --binstubs
     ./bin/omnibus build ruby
   SHELL
