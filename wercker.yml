@@ -35,8 +35,8 @@ build:
       code: |-
         yum install openssh-clients -y
         vagrant up
-        vagrant ssh-config --host omnibus-ruby | tee ssh-config.txt
-        scp -F ssh-config.txt omnibus-ruby:/omnibus-ruby/pkg/*.rpm .
+        vagrant ssh-config --host omnibus | tee ssh-config.txt
+        scp -F ssh-config.txt omnibus:/vagrant/pkg/*.rpm .
 
   after-steps:
     - script:

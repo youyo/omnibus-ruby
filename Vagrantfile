@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
       override.ssh.private_key_path = ENV['VAGRANT_PRIVATE_KEY_PATH']
       override.vm.box = 'digital_ocean'
       override.vm.box_url = "https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box"
-      override.vm.synced_folder ".", "/vagrant", type: "rsync"
+      override.vm.synced_folder ".", "/vagrant", type: "rsync",
+        rsync__args: ["--verbose", "--rsync-path='sudo rsync'"]
       provider.token = ENV['DEGITALOCEAN_TOKEN']
       provider.image = ENV['DEGITALOCEAN_IMAGE']
       provider.region = 'sgp1'
