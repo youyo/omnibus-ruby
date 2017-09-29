@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
+=begin
   config.vm.provision "shell", inline: <<-SHELL
     yum install epel-release -y
     yum install wget make gcc gcc-c++ glibc glibc-devel kernel-devel zlib-devel openssl-devel readline-devel curl-devel sqlite-devel libyaml-devel libffi-devel rpm-build autoconf expat-devel gettext-devel perl-ExtUtils-MakeMaker -y
@@ -39,4 +40,5 @@ Vagrant.configure("2") do |config|
     bundle install --binstubs
     ./bin/omnibus build ruby
   SHELL
+=end
 end
